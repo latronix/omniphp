@@ -1,7 +1,7 @@
 # OmniPHP Framework
 ===================
 
-## TEST (WIP (Work In Progress>))
+## TEST (WIP (Work In Progress))
 OmniPHP is a set of libraries and components for:
 - HTML5 forms with all pertinent validations
 - CRUD
