@@ -19,7 +19,7 @@ $(document).ready(function(){
                         maxlength: "Your phone cannot exceed 12 characters"
                 }
         },
-	errorLabelContainer: $("#OmniPHP_Form div.omniphp_validation_errors")
+	errorLabelContainer: $("#OmniPHP_Form div.mensajeXXX")
     });
     
 });

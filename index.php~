@@ -32,7 +32,7 @@ ob_start("ob_gzhandler");
             }
 
 /* hack */
-div.omniphp_validation_errors
+div.mensajeXXX
 {
 	border: 1px solid #F00;
 	background-color: #FF0;
@@ -123,12 +123,14 @@ if(isset($_POST['Submit']))
     echo "successfully submitted data!...<br><br>";
 }
 
-//echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
 echo "Test Form...<br>";
 
 echo "<form name='OmniPHP_Form' id='OmniPHP_Form' method='post' action='index.php'>";
 
-echo "<div class='omniphp_validation_errors'></div>"; //to force error output
+//echo "<div class='mensajeXXX'>Estatico</div>";
+
+echo "<div class='mensajeXXX'></div>"; //to force error output
 /*
 		<p>
 			<label for="firstname">Firstname</label>
