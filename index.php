@@ -23,27 +23,26 @@ ob_start("ob_gzhandler");
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/cupertino/jquery-ui.css">
-        <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-<link rel="stylesheet" href="css/bootstrap_hack.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <style>
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
+	body {
+		padding-top: 60px;
+		padding-bottom: 40px;
+	}
 
-/* hack */
-div.omniphp_validation_errors
-{
-	border: 1px solid #F00;
-	background-color: #FF0;
-	color: #F00;
-	font-weight: bold;
-	font-size: 20pt;
-	font-family: verdana;
-	padding: 3px;
-	width: 50%;
-}
-
+	/* OmniPHP Styles */
+	div.omniphp_validation_errors
+	{
+		border: 1px solid #F00;
+		background-color: #FF0;
+		color: #F00;
+		font-weight: bold;
+		font-size: 20pt;
+		font-family: arial, helvetica, sans-serif;
+		padding: 3px;
+		width: 50%;
+		display: none;
+	}
         </style>
 
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
@@ -53,11 +52,12 @@ div.omniphp_validation_errors
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<!-- fix me: add as real CDN -->
 <script src="http://jquery.bassistance.de/validate/lib/jquery.metadata.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/additional-methods.min.js"></script>
 <!-- fix me: add as real CDN -->
-        <script src="http://cloud.github.com/downloads/digitalBush/jquery.maskedinput/jquery.maskedinput-1.3.min.js"></script>
+<script src="http://cloud.github.com/downloads/digitalBush/jquery.maskedinput/jquery.maskedinput-1.3.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
@@ -138,6 +138,15 @@ echo "<div class='omniphp_validation_errors'></div>"; //to force error output
 
 //echo "<p><label for='CellPhone'>Label Cell Phone: </label>";
 //echo "Cell Phone: ";
+/*
+OmniPHP:
+textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
+$arr_type_format = array($custom_type, $format, $bRequired, $force_masking)
+	$custom_type = text,phone, etc...
+	$format = us_phone (any format),us_phone1 (###-###-####),us_phone2 ((###) ###-####), etc...
+$arr_properties = array($min, $max, $tab_index, $bReadonly)
+$arr_messages = array($hint, array($err1 => "Required", $err2 => "Incorrect format (i.e. xxx)", $err3 => "Generic Error"))
+*/
 echo "<input type='text' name='CellPhone' id='CellPhone' maxlength='50' value=''>";
 //echo "<input type='phone' name='CellPhone' id='CellPhone' maxlength='10' value='' required>";
 //echo "</p>";

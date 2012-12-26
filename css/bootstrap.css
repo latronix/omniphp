@@ -948,7 +948,8 @@ legend small {
   color: #999999;
 }
 
-label,
+/* hack: eliminated this because it created problems with jquery modified div, i.e. not allowing changing font-size */
+/*label,*/
 input,
 button,
 select,
