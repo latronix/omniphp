@@ -2,10 +2,11 @@
 /**
  * OmniPHP Framework
  * 
- * @version 0.4.0
  * @author Carmelo Vargas <cvargas@omniphp.com>
+ * @license http://www.gnu.org/licenses/lgpl-3.0.txt GNU Lesser General Public License 3
+ * @version OmniPHP 0.4.0 (non-release)
+ * @link http://www.omniphp.com/
  * @copyright 2010 - 2012 to OmniPHP.
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License 3
  */
 
 ob_start("ob_gzhandler");
@@ -141,11 +142,13 @@ echo "<div class='omniphp_validation_errors'></div>"; //to force error output
 /*
 OmniPHP:
 textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
-$arr_type_format = array($custom_type, $format, $bRequired, $force_masking)
+    $arr_type_format = array($custom_type, $format, $bRequired, $force_masking)
 	$custom_type = text,phone, etc...
 	$format = us_phone (any format),us_phone1 (###-###-####),us_phone2 ((###) ###-####), etc...
-$arr_properties = array($min, $max, $tab_index, $bReadonly)
-$arr_messages = array($hint, array($err1 => "Required", $err2 => "Incorrect format (i.e. xxx)", $err3 => "Generic Error"))
+    $arr_properties = array($size, $min, $max, $tab_index, $bReadonly)
+    $arr_messages = array($hint, array($err1 => "Required", $err2 => "Incorrect format (i.e. xxx)", $err3 => "Generic Error"))
+
+textbox_simple($dom_name, $value = NULL, $custom_type = "text", $bRequired = true)
 */
 echo "<input type='text' name='CellPhone' id='CellPhone' maxlength='50' value=''>";
 //echo "<input type='phone' name='CellPhone' id='CellPhone' maxlength='10' value='' required>";
