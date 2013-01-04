@@ -74,11 +74,15 @@ class OmniPHP_Form
     
     /**
      * 
-     * @param type $dom_name
-     * @param type $arr_type_format
-     * @param type $arr_properties
-     * @param type $arr_messages
-     * @param type $value 
+     * @param string $dom_name The DOM name for the input control (will serve as name and id)
+     * @param array $arr_type_format array(customType, format, bRequired, bForceMask)
+     *              customType = (text, integer, float, phone, credit_card, social_security_number, zip_code, ...?)
+     *              format = (phone = us_phone_all, us_phone1, us_phone2, uk_phone, mx_phone, es_phone, ...?),
+     *                       (credit_card = cc_all, cc_visa, cc_mastercard, cc_amex, cc_discover),
+     *                       (...)
+     * @param array $arr_properties array(class, min, max, tabindex, readonly)
+     * @param array $arr_messages array(hint, title, array(err1 => "err msg", err2 => "err msg"))
+     * @param mixed $value The value of the input control, will most likely be a string or an int/float, but can be others.
      */
     public function textbox($dom_name, $arr_type_format = array("text", NULL, true, false), $arr_properties = array(NULL, 1, 255, 1, false), $arr_messages = array(NULL, NULL, array("ERROR_REQUIRED" => "This field is required.")), $value = NULL)
     {
