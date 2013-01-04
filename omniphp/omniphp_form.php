@@ -22,6 +22,8 @@ class OmniPHP_Form
      * MEMBERS
      */
     //private $wrapper;
+    private $form_name;
+    private $js_stack; //JavaScript Stack (code to be installed in .js)
     
     /**
      * METHODS 
@@ -45,22 +47,109 @@ class OmniPHP_Form
     {
         if(empty($action))
         {
-            $action = $_SERVER['PHP_SELF'];
+            if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === "on") $http_prefix = "https://"; else $http_prefix = "http://";
+            $absolute_url = $http_prefix . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            
+            //$relative_url = $_SERVER['PHP_SELF'];
+            
+            $action = $absolute_url; //choose whether to use full URL path or relative path.
         }
         echo "<form name='{$dom_name}' id='{$dom_name}' method='{$method}' action='{$action}'>";
+        
+        $this->form_name = $dom_name;
     }
     
     /**
-     *  
+     * 
+     * @param array $arr_save_button array("name","text","class") for input submit
      */
-    public function form_end()
+    public function form_end($arr_save_button = NULL) //array("name","text","class")
     {
+        if(!empty($arr_save_button))
+        {
+            echo "<input class='{$arr_save_button[2]}' type='submit' name='{$arr_save_button[0]}' id='{$arr_save_button[0]}' value='{$arr_save_button[1]}'>";
+        }
         echo "</form>";
     }
     
-    public function textbox($dom_name, $arr_type_format = array("text", NULL, true, false), $arr_properties = array(20, 1, 255, 1, false), $arr_messages = array(NULL, array("ERROR_REQUIRED" => "This field is required.")), $value = NULL)
+    /**
+     * 
+     * @param type $dom_name
+     * @param type $arr_type_format
+     * @param type $arr_properties
+     * @param type $arr_messages
+     * @param type $value 
+     */
+    public function textbox($dom_name, $arr_type_format = array("text", NULL, true, false), $arr_properties = array(NULL, 1, 255, 1, false), $arr_messages = array(NULL, NULL, array("ERROR_REQUIRED" => "This field is required.")), $value = NULL)
     {
-        //
+        $js_str = "{$dom_name}: \{";
+        
+        $arr_rules = array();
+        if(isset($arr_type_format[1]) && $arr_type_format[2] === true)
+        {
+            array_push($arr_rules, "required: true");
+        }
+        if(isset($arr_properties[1]) && ctype_digit($arr_properties[1]))
+        {
+            array_push($arr_rules, "minlength: {$arr_properties[1]}");
+        }
+        if(isset($arr_properties[2]) && ctype_digit($arr_properties[2]) && $arr_properties[2] >= $arr_properties[1])
+        {
+            array_push($arr_rules, "maxlength: {$arr_properties[2]}");
+        }
+        if($arr_type_format[0] == "phone")
+        {
+            switch($arr_type_format[1])
+            {
+                case "us_phone_all": //formats: (000) 000-0000 || 000-000-0000 || 000 000-0000, must be valid US phone numbers (i.e. nnn-555-nnnn not allowed)
+                {
+                    array_push($arr_rules, "phoneUS: true");
+                }
+                break;
+                case "us_phone1":
+                {
+                    //
+                }
+                break;
+                case "us_phone2":
+                {
+                    //
+                }
+                break;
+                default:
+                {
+                    array_push($arr_rules, "phoneUS: true"); //default to: us_phone_all
+                }
+            }
+        }
+        
+        $js_str .= implode(",", $arr_rules);
+        $js_str .= "\}";
+        array_push($this->js_stack, $js_str);
+        
+        //add me:
+        echo "<input type='text' name='{$dom_name}' id='{$dom_name}' maxlength='{$arr_properties[2]}' title='{$arr_messages[1]}' class='{$arr_properties[0]}' tabindex='{$arr_properties[3]}' value='{$value}'>";
+//echo "<input type='text' name='CellPhone' id='CellPhone' maxlength='50' value=''>";
+        
+        /*$("#OmniPHP_Form").validate({
+            rules: {
+                    CellPhone: {
+                            required: true,
+                            phoneUS: true,
+                            minlength: 12,
+                            maxlength: 12
+                    }
+            },
+            messages: {
+                    CellPhone: {
+                            required: "Please enter a phone",
+                            phoneUS: "Enter phone in correct format",
+                            minlength: "Your phone must consist of at least 12 characters",
+                            maxlength: "Your phone cannot exceed 12 characters"
+                    }
+            },
+            errorLabelContainer: $("#OmniPHP_Form div.omniphp_validation_errors")
+        });*/
     }
 /*  
 textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);

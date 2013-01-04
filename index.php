@@ -119,27 +119,8 @@ ob_start("ob_gzhandler");
 -->
 <?php
 
-if(isset($_POST['Submit']))
-{
-    echo "successfully submitted data!...<br><br>";
-}
-
-//echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-echo "Test Form...<br>";
-
-echo "<form name='OmniPHP_Form' id='OmniPHP_Form' method='post' action='index.php'>";
-
-echo "<div class='omniphp_validation_errors'></div>"; //to force error output
 /*
-		<p>
-			<label for="firstname">Firstname</label>
-			<input id="firstname" name="firstname" type="text" />
-		</p>
-*/
-
-//echo "<p><label for='CellPhone'>Label Cell Phone: </label>";
-//echo "Cell Phone: ";
-/*
+[REFERENCE]
 OmniPHP:
 textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
     $arr_type_format = array($custom_type, $format, $bRequired, $force_masking)
@@ -150,10 +131,23 @@ textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
 
 textbox_simple($dom_name, $value = NULL, $custom_type = "text", $bRequired = true)
 */
+
+if(isset($_POST['Submit']))
+{
+    echo "successfully submitted data!...<br><br>";
+}
+
+echo "Test Form...<br>";
+
+echo "<form name='OmniPHP_Form' id='OmniPHP_Form' method='post' action='index.php'>";
+
+echo "<div class='omniphp_validation_errors'></div>"; //to force error output
+
+echo "<p>";
+echo "<label for='CellPhone'>Cell Phone: </label>";
 echo "<input type='text' name='CellPhone' id='CellPhone' maxlength='50' value=''>";
 //echo "<input type='phone' name='CellPhone' id='CellPhone' maxlength='10' value='' required>";
-//echo "</p>";
-echo "<br>";
+echo "</p>";
 
 echo "<input type='submit' name='Submit' id='Submit' value='Submit'>";
 
