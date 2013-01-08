@@ -61,7 +61,8 @@ ob_start("ob_gzhandler");
 <script src="http://cloud.github.com/downloads/digitalBush/jquery.maskedinput/jquery.maskedinput-1.3.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+<!-- FIX ME: vf how to add this -->
+<!--        <script src="js/main.js"></script> -->
 <!-- fix me: add me
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -137,6 +138,42 @@ if(isset($_POST['Submit']))
     echo "successfully submitted data!...<br><br>";
 }
 
+//fix me: use proper include instead.
+require_once("omniphp/omniphp_form.php"); //should go at the beginning, would include like this?, also from views the link would be: "../omniphp/omniphp_form.php"
+$omniphp = new OmniPHP_Form();
+$omniphp->form_start("OmniPHP_Form", "post", $_SERVER['PHP_SELF']);
+
+
+/**
+ * PROGRAMMATIC NOTE:
+ * This (textbox call) seems rather lengthy, the 'textbox_simple(...)' version must be as complete as possible but considerably
+ * smaller. Another alternative could be to 'install/scaffold' the inputs and then proceed to create them.
+ * i.e. $phone_params = array of all parameters for all phone fields
+ * then...
+ * $omniphp->textbox("name", $phone_params);
+ * and use the 'full version' as:
+ * $omniphp->textbox_raw(...);
+ */
+
+/**
+ *
+ * @param string $dom_name The DOM name for the input control (will serve as name and id)
+ * @param array $arr_type_format array(customType, format, bRequired, bForceMask)
+ *              customType = (text, integer, float, phone, credit_card, social_security_number, zip_code, ...?)
+ *              format = (phone = us_phone_all, us_phone1, us_phone2, uk_phone, mx_phone, es_phone, ...?),
+ *                       (credit_card = cc_all, cc_visa, cc_mastercard, cc_amex, cc_discover),
+ *                       (...)
+ * @param array $arr_properties array(class, min, max, tabindex, readonly)
+ * @param array $arr_messages array(hint, title, array(err1 => "err msg", err2 => "err msg"))
+ * @param mixed $value The value of the input control, will most likely be a string or an int/float, but can be others.
+ */
+//public function textbox($dom_name, $arr_type_format = array("text", NULL, true, false), $arr_properties = array(NULL, 1, 255, 1, false), $arr_messages = array(NULL, NULL, array("ERROR_REQUIRED" => "This field is required.")), $value = NULL)
+$omniphp->textbox("Phone1", array("phone","us_phone_all",true,false), array("className",10,14,1,false), array("hint", "title", array("ERROR_REQUIRED" => "This field is required.")), NULL);
+
+
+$omniphp->form_end(array("SaveButton", "Save", "className"));
+
+/*
 echo "Test Form...<br>";
 
 echo "<form name='OmniPHP_Form' id='OmniPHP_Form' method='post' action='index.php'>";
@@ -154,7 +191,7 @@ echo "<input type='submit' name='Submit' id='Submit' value='Submit'>";
 echo "</form>";
 
 echo "<br><br>";
-
+*/
 ?>
 <div class="container">
             

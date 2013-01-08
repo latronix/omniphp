@@ -63,7 +63,7 @@ class OmniPHP_Form
      * 
      * @param array $arr_save_button array("name","text","class") for input submit
      */
-    public function form_end($arr_save_button = NULL) //array("name","text","class")
+    public function form_end($arr_save_button = array(NULL, NULL, NULL))
     {
         if(!empty($arr_save_button))
         {
@@ -89,7 +89,7 @@ class OmniPHP_Form
         $js_str = "{$dom_name}: \{";
         
         $arr_rules = array();
-        if(isset($arr_type_format[1]) && $arr_type_format[2] === true)
+        if(isset($arr_type_format[2]) && $arr_type_format[2] === true)
         {
             array_push($arr_rules, "required: true");
         }
