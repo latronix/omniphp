@@ -1,8 +1,34 @@
+/* ====================================
+	OmniPHP's Custom Styles
+   ==================================== */
 
+div.omniphp_validation_errors
+{
+	border: 2px solid #F00;
+	background-color: #FF0;
+	color: #F00;
+	font-weight: bold;
+	font-size: 20pt;
+	font-family: arial, helvetica, sans-serif;
+	padding: 6px;
+	width: 50%;
+	display: none;
+}
+	
+input.OmniPHP_Input_Class
+{
+	/**/
+}
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+span.OmniPHP_Error_note
+{
+	color: #F00;
+	background-color: #FF0;
+	border: 1px solid #F00;
+	font-family: "raster fonts", "lucida console", arial, helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
 
 
 

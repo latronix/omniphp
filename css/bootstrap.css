@@ -987,6 +987,16 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"],
+/*
+omniphp specific inputs
+*/
+input[type="integer"],
+input[type="int"],
+input[type="float"],
+input[type="phone"],
+input[type="credit_card"],
+input[type="social_security_number"],
+input[type="zip_code"],
 .uneditable-input {
   display: inline-block;
   height: 20px;
@@ -1026,6 +1036,16 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"],
+/*
+omniphp specific inputs
+*/
+input[type="integer"],
+input[type="int"],
+input[type="float"],
+input[type="phone"],
+input[type="credit_card"],
+input[type="social_security_number"],
+input[type="zip_code"],
 .uneditable-input {
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -1053,6 +1073,16 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
+/*
+omniphp specific inputs
+*/
+input[type="integer"]:focus,
+input[type="int"]:focus,
+input[type="float"]:focus,
+input[type="phone"]:focus,
+input[type="credit_card"]:focus,
+input[type="social_security_number"]:focus,
+input[type="zip_code"]:focus,
 .uneditable-input:focus {
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;

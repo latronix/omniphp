@@ -2,10 +2,11 @@
 /**
  * OmniPHP Framework
  * 
- * @version 0.4.0
  * @author Carmelo Vargas <cvargas@omniphp.com>
+ * @license http://www.gnu.org/licenses/lgpl-3.0.txt GNU Lesser General Public License 3
+ * @version OmniPHP 0.4.0 (non-release)
+ * @link http://www.omniphp.com/
  * @copyright 2010 - 2012 to OmniPHP.
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License 3
  */
 
 ob_start("ob_gzhandler");
@@ -60,7 +61,8 @@ ob_start("ob_gzhandler");
 <script src="http://cloud.github.com/downloads/digitalBush/jquery.maskedinput/jquery.maskedinput-1.3.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+<!-- FIX ME: vf how to add this -->
+        <script src="js/main.js"></script> 
 <!-- fix me: add me
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -118,37 +120,44 @@ ob_start("ob_gzhandler");
 -->
 <?php
 
+/*
+[REFERENCE]
+OmniPHP:
+textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
+    $arr_type_format = array($custom_type, $format, $bRequired, $force_masking)
+	$custom_type = text,phone, etc...
+	$format = us_phone (any format),us_phone1 (###-###-####),us_phone2 ((###) ###-####), etc...
+    $arr_properties = array($size, $min, $max, $tab_index, $bReadonly)
+    $arr_messages = array($hint, array($err1 => "Required", $err2 => "Incorrect format (i.e. xxx)", $err3 => "Generic Error"))
+
+textbox_simple($dom_name, $value = NULL, $custom_type = "text", $bRequired = true)
+*/
+
 if(isset($_POST['Submit']))
 {
     echo "successfully submitted data!...<br><br>";
 }
 
-//echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+
+//*
 echo "Test Form...<br>";
 
 echo "<form name='OmniPHP_Form' id='OmniPHP_Form' method='post' action='index.php'>";
 
 echo "<div class='omniphp_validation_errors'></div>"; //to force error output
-/*
-		<p>
-			<label for="firstname">Firstname</label>
-			<input id="firstname" name="firstname" type="text" />
-		</p>
-*/
 
-//echo "<p><label for='CellPhone'>Label Cell Phone: </label>";
-//echo "Cell Phone: ";
+echo "<p>";
+echo "<label for='CellPhone'>Cell Phone: </label>";
 echo "<input type='text' name='CellPhone' id='CellPhone' maxlength='50' value=''>";
 //echo "<input type='phone' name='CellPhone' id='CellPhone' maxlength='10' value='' required>";
-//echo "</p>";
-echo "<br>";
+echo "</p>";
 
 echo "<input type='submit' name='Submit' id='Submit' value='Submit'>";
 
 echo "</form>";
 
 echo "<br><br>";
-
+//*/
 ?>
 <div class="container">
             

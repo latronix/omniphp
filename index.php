@@ -23,46 +23,46 @@ ob_start("ob_gzhandler");
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/cupertino/jquery-ui.css">
+        
+        <!-- CDN: <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/cupertino/jquery-ui.css"> -->
+        <link rel="stylesheet" href="js/vendor/css/cupertino/jquery-ui-1.10.0.custom.min.css">
         <link rel="stylesheet" href="css/bootstrap.css">
         <style>
-	body {
-		padding-top: 60px;
-		padding-bottom: 40px;
-	}
-
-	/* OmniPHP Styles */
-	div.omniphp_validation_errors
-	{
-		border: 1px solid #F00;
-		background-color: #FF0;
-		color: #F00;
-		font-weight: bold;
-		font-size: 20pt;
-		font-family: arial, helvetica, sans-serif;
-		padding: 3px;
-		width: 50%;
-		display: none;
-	}
+			body {
+				padding-top: 60px;
+				padding-bottom: 40px;
+			}
         </style>
-
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+        <?php
+        //CDN
+        /*
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-<!-- fix me: add as real CDN -->
-<script src="http://jquery.bassistance.de/validate/lib/jquery.metadata.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/additional-methods.min.js"></script>
-<!-- fix me: add as real CDN -->
-<script src="http://cloud.github.com/downloads/digitalBush/jquery.maskedinput/jquery.maskedinput-1.3.min.js"></script>
+        <!-- non-CDN -->
+		<script src="js/vendor/jquery.metadata.js"></script>
+		<script src="js/vendor/jquery.maskedinput-1.3.min.js"></script>
+		*/
+		?>
+		<!-- LOCAL -->
+        <script src="js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="js/vendor/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="js/vendor/jquery.metadata.js"></script>
+        <script src="js/vendor/jquery.validate.min.js"></script> 
+        <script src="js/vendor/additional-methods.min.js"></script>
+		<script src="js/vendor/jquery.maskedinput-1.3.min.js"></script>
+		
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
 <!-- FIX ME: vf how to add this -->
-<!--        <script src="js/main.js"></script> -->
+        <!-- <script src="js/main.js"></script> -->
 <!-- fix me: add me
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -133,7 +133,7 @@ textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
 textbox_simple($dom_name, $value = NULL, $custom_type = "text", $bRequired = true)
 */
 
-if(isset($_POST['Submit']))
+if(isset($_POST['Submit']) || isset($_POST['SaveButton']))
 {
     echo "successfully submitted data!...<br><br>";
 }
@@ -143,6 +143,7 @@ require_once("omniphp/omniphp_form.php"); //should go at the beginning, would in
 $omniphp = new OmniPHP_Form();
 $omniphp->form_start("OmniPHP_Form", "post", $_SERVER['PHP_SELF']);
 
+echo "<div class='omniphp_validation_errors'></div>"; //to force error output
 
 /**
  * PROGRAMMATIC NOTE:
@@ -153,8 +154,10 @@ $omniphp->form_start("OmniPHP_Form", "post", $_SERVER['PHP_SELF']);
  * $omniphp->textbox("name", $phone_params);
  * and use the 'full version' as:
  * $omniphp->textbox_raw(...);
- */
+*/
 
+echo "<p>";
+echo "<label for='CellPhone'>Cell Phone: </label>";
 /**
  *
  * @param string $dom_name The DOM name for the input control (will serve as name and id)
@@ -166,13 +169,38 @@ $omniphp->form_start("OmniPHP_Form", "post", $_SERVER['PHP_SELF']);
  * @param array $arr_properties array(class, min, max, tabindex, readonly)
  * @param array $arr_messages array(hint, title, array(err1 => "err msg", err2 => "err msg"))
  * @param mixed $value The value of the input control, will most likely be a string or an int/float, but can be others.
- */
+*/
 //public function textbox($dom_name, $arr_type_format = array("text", NULL, true, false), $arr_properties = array(NULL, 1, 255, 1, false), $arr_messages = array(NULL, NULL, array("ERROR_REQUIRED" => "This field is required.")), $value = NULL)
-$omniphp->textbox("Phone1", array("phone","us_phone_all",true,false), array("className",10,14,1,false), array("hint", "title", array("ERROR_REQUIRED" => "This field is required.")), NULL);
+//$omniphp->textbox("CellPhone", array("phone","us_phone_all",true,false), array("className",10,14,1,false), array("hint", "title", array("ERROR_REQUIRED" => "This field is required.")), NULL);
+$omniphp->input(array("name" => "CellPhone", "type" => "phone", "format" => "us_phone_all", "required" => true, "minlength" => 12, "maxlength" => 12));
+echo "</p>";
 
+echo "<p>";
+echo "<label for='Phone2'>Home Phone: </label>";
+$omniphp->input(array("name" => "HomePhone", "type" => "phone", "format" => "us_phone_all", "required" => true));
+echo "</p>";
+
+echo "<p>";
+echo "<label for='Text1'>Text1: </label>";
+$omniphp->input(array("name" => "Text1", "type" => "text", "required" => true));
+echo "</p>";
+
+echo "<p><label for='Phone3'>Phone 3 (via HTML5):</label><input name='Phone3' type='text' required='required' id='Phone3'></p>";
+
+
+echo "<p><label for='Email'>Email: </label>";
+$omniphp->input(array("name" => "Email", "type" => "email", "required" => true));
+echo "</p>";
+
+//$omniphp->input(array("name" => "Phone3", "type" => "phone", "format" => "us_phone1", "required" => true, "max" => 15, "min" => 10, "tabindex" => 5, ))
 
 $omniphp->form_end(array("SaveButton", "Save", "className"));
 
+//fix me: do not add this here:
+$omniphp->render_js_stack();
+echo "<br><br>";
+
+//REFERENCE:
 /*
 echo "Test Form...<br>";
 
@@ -191,7 +219,7 @@ echo "<input type='submit' name='Submit' id='Submit' value='Submit'>";
 echo "</form>";
 
 echo "<br><br>";
-*/
+//*/
 ?>
 <div class="container">
             
