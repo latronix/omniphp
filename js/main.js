@@ -2,6 +2,7 @@ $(document).ready(function(){
     
     //alert("hello world...");
     
+	/*
     $("#OmniPHP_Form").validate({
         rules: {
                 CellPhone: {
@@ -21,5 +22,6 @@ $(document).ready(function(){
         },
 	errorLabelContainer: $("#OmniPHP_Form div.omniphp_validation_errors")
     });
+    */
     
 });

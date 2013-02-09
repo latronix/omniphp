@@ -8,10 +8,11 @@ div.omniphp_validation_errors
 	background-color: #FF0;
 	color: #F00;
 	font-weight: bold;
-	font-size: 20pt;
+	font-style: italic;
+	font-size: 14pt;
 	font-family: arial, helvetica, sans-serif;
-	padding: 6px;
-	width: 50%;
+	padding: 3px;
+	width: 100%;
 	display: none;
 }
 	

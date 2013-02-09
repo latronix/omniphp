@@ -61,8 +61,7 @@ ob_start("ob_gzhandler");
 		
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
-<!-- FIX ME: vf how to add this -->
-        <!-- <script src="js/main.js"></script> -->
+        <script src="js/main.js"></script>
 <!-- fix me: add me
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -115,25 +114,17 @@ ob_start("ob_gzhandler");
                 </div>
             </div>
         </div>
-<!--
-        <div class="container">
--->
+
+<div class="container">
+            
+            <!-- Main hero unit for a primary marketing message or call to action -->
+            <div class="hero-unit">
+
 <?php
 
-/*
-[REFERENCE]
-OmniPHP:
-textbox($dom_name, $arr_type_format, $arr_properties, $arr_messages, $value);
-    $arr_type_format = array($custom_type, $format, $bRequired, $force_masking)
-	$custom_type = text,phone, etc...
-	$format = us_phone (any format),us_phone1 (###-###-####),us_phone2 ((###) ###-####), etc...
-    $arr_properties = array($size, $min, $max, $tab_index, $bReadonly)
-    $arr_messages = array($hint, array($err1 => "Required", $err2 => "Incorrect format (i.e. xxx)", $err3 => "Generic Error"))
+echo "<h2>OmniPHP_Form Test 1</h2>";
 
-textbox_simple($dom_name, $value = NULL, $custom_type = "text", $bRequired = true)
-*/
-
-if(isset($_POST['Submit']) || isset($_POST['SaveButton']))
+if(isset($_POST['SaveButton']))
 {
     echo "successfully submitted data!...<br><br>";
 }
@@ -145,39 +136,15 @@ $omniphp->form_start("OmniPHP_Form", "post", $_SERVER['PHP_SELF']);
 
 echo "<div class='omniphp_validation_errors'></div>"; //to force error output
 
-/**
- * PROGRAMMATIC NOTE:
- * This (textbox call) seems rather lengthy, the 'textbox_simple(...)' version must be as complete as possible but considerably
- * smaller. Another alternative could be to 'install/scaffold' the inputs and then proceed to create them.
- * i.e. $phone_params = array of all parameters for all phone fields
- * then...
- * $omniphp->textbox("name", $phone_params);
- * and use the 'full version' as:
- * $omniphp->textbox_raw(...);
-*/
-
 echo "<p>";
-echo "<label for='CellPhone'>Cell Phone: </label>";
-/**
- *
- * @param string $dom_name The DOM name for the input control (will serve as name and id)
- * @param array $arr_type_format array(customType, format, bRequired, bForceMask)
- *              customType = (text, integer, float, phone, credit_card, social_security_number, zip_code, ...?)
- *              format = (phone = us_phone_all, us_phone1, us_phone2, uk_phone, mx_phone, es_phone, ...?),
- *                       (credit_card = cc_all, cc_visa, cc_mastercard, cc_amex, cc_discover),
- *                       (...)
- * @param array $arr_properties array(class, min, max, tabindex, readonly)
- * @param array $arr_messages array(hint, title, array(err1 => "err msg", err2 => "err msg"))
- * @param mixed $value The value of the input control, will most likely be a string or an int/float, but can be others.
-*/
-//public function textbox($dom_name, $arr_type_format = array("text", NULL, true, false), $arr_properties = array(NULL, 1, 255, 1, false), $arr_messages = array(NULL, NULL, array("ERROR_REQUIRED" => "This field is required.")), $value = NULL)
-//$omniphp->textbox("CellPhone", array("phone","us_phone_all",true,false), array("className",10,14,1,false), array("hint", "title", array("ERROR_REQUIRED" => "This field is required.")), NULL);
+//echo "<label for='CellPhone'>Cell Phone: </label>";
+echo "Cell Phone: ";
 $omniphp->input(array("name" => "CellPhone", "type" => "phone", "format" => "us_phone_all", "required" => true, "minlength" => 12, "maxlength" => 12));
 echo "</p>";
 
 echo "<p>";
 echo "<label for='Phone2'>Home Phone: </label>";
-$omniphp->input(array("name" => "HomePhone", "type" => "phone", "format" => "us_phone_all", "required" => true));
+$omniphp->input(array("name" => "HomePhone", "type" => "phone", "format" => "us_phone_all", "required" => true, "class" => "input-small"));
 echo "</p>";
 
 echo "<p>";
@@ -187,51 +154,28 @@ echo "</p>";
 
 echo "<p><label for='Phone3'>Phone 3 (via HTML5):</label><input name='Phone3' type='text' required='required' id='Phone3'></p>";
 
-
 echo "<p><label for='Email'>Email: </label>";
 $omniphp->input(array("name" => "Email", "type" => "email", "required" => true));
 echo "</p>";
 
-//$omniphp->input(array("name" => "Phone3", "type" => "phone", "format" => "us_phone1", "required" => true, "max" => 15, "min" => 10, "tabindex" => 5, ))
-
-$omniphp->form_end(array("SaveButton", "Save", "className"));
+$omniphp->form_end(array("SaveButton", "Save", "btn btn-large"));
 
 //fix me: do not add this here:
 $omniphp->render_js_stack();
 echo "<br><br>";
 
-//REFERENCE:
-/*
-echo "Test Form...<br>";
-
-echo "<form name='OmniPHP_Form' id='OmniPHP_Form' method='post' action='index.php'>";
-
-echo "<div class='omniphp_validation_errors'></div>"; //to force error output
-
-echo "<p>";
-echo "<label for='CellPhone'>Cell Phone: </label>";
-echo "<input type='text' name='CellPhone' id='CellPhone' maxlength='50' value=''>";
-//echo "<input type='phone' name='CellPhone' id='CellPhone' maxlength='10' value='' required>";
-echo "</p>";
-
-echo "<input type='submit' name='Submit' id='Submit' value='Submit'>";
-
-echo "</form>";
-
-echo "<br><br>";
-//*/
 ?>
-<div class="container">
             
             
-            <!-- Main hero unit for a primary marketing message or call to action -->
-            <div class="hero-unit">
+            	<!-- 
                 <h1>Hello, world!</h1>
                 <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
                 <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+                -->
             </div>
 
             <!-- Example row of columns -->
+            <!-- 
             <div class="row">
                 <div class="span4">
                     <h2>Heading</h2>
@@ -249,6 +193,7 @@ echo "<br><br>";
                     <p><a class="btn" href="#">View details &raquo;</a></p>
                 </div>
             </div>
+            -->
 
             <hr>
 
