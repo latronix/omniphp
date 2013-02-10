@@ -10,7 +10,7 @@
 	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 	
 	<style>
-	.omniphp_validation_errors
+	/*.omniphp_validation_errors
 	{
 		border: 1px solid #F00;
 		background-color: #FF0;
@@ -20,7 +20,23 @@
 		font-size: 12pt;
 		font-weight: bold;
 		display: none;
-	}
+	}*/
+	
+	
+div.omniphp_validation_errors
+{
+	border: 2px solid #F00;
+	background-color: #FF0;
+	color: #F00;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 14pt;
+	font-family: arial, helvetica, sans-serif;
+	padding: 3px;
+	width: 100%;
+	display: none;
+}
+	
 	</style>
 	
 	<script src="js/vendor/jquery-1.9.1.min.js"></script>
@@ -50,7 +66,7 @@
 	<?php	
 	if(isset($_POST['SaveButton']))
 	{
-		$arrLastVal = $_POST;
+		//$arrLastVal = $_POST;
 	
 		echo "Successfully submitted the following data...<br>";
 		echo "<pre>";
@@ -60,7 +76,7 @@
 	}
 	else
 	{
-		$arrLastVal['CustomerFullName'] = NULL;
+		//$arrLastVal['CustomerFullName'] = NULL;
 	}
 	
 	require_once("omniphp/omniphp_form.php");
@@ -70,7 +86,7 @@
 	echo "<div class='omniphp_validation_errors'></div>"; //to force error output
 
 	echo "Customer Full Name: ";
-	$omniphp->input(array("name" => "CustomerFullName", "type" => "text", "required" => true, "minlength" => 2, "maxlength" => 100, "value" => $arrLastVal['CustomerFullName']));
+	$omniphp->input(array("name" => "CustomerFullName", "type" => "text", "required" => true, "minlength" => 2, "maxlength" => 100));//, "value" => $arrLastVal['CustomerFullName']));
 	echo "<br>";
 	
 	echo "Customer Phone (optional): ";

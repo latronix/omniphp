@@ -182,6 +182,28 @@ class OmniPHP_Form
     		return;
     	}
     	
+//NOTE: While the most flexible solution is to use REQUEST, maybe I should FORCE the user to use POST instead of GET?
+//Mostly because POST is more efficient; less convoluted for the URL, and it allows greater data storage.
+//The usual configurations (web server and web browser specific) for the HTTP requests is hypothetically like this:
+//HTTP POST up to 2 GB?
+//HTTP GET around 8 KB? (yes KILOBYTES not even 1 MB)
+//
+//For large web forms it is definitely convenient to use POST or force the user to divide the web form in different
+//sections or use some other hack.
+//
+//Maybe I should just encourage the user to use POST but leave it like this to allow full flexibility?
+		/**
+		 * Retain the value of the input after performing HTTP request.
+		 */
+    	/*if(!isset($params["value"]) && isset($_POST[$params["name"]]))
+    	{
+    		$params["value"] = $_POST[$params["name"]];
+    	}*/
+    	if(!isset($params["value"]) && isset($_REQUEST[$params["name"]]))
+    	{
+    		$params["value"] = $_REQUEST[$params["name"]];
+    	}
+    	
 		/**
 		 * arr_rules and arr_messages
 		 */
