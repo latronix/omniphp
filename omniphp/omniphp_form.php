@@ -314,6 +314,16 @@ class OmniPHP_Form
     	echo ">";
     }
     
+	//differs from HTML: arrValues equivalent to options, array("option_value" => "label_text")
+    public function select($params = array("name" => "", "id" => "", 
+    		"class" => "OmniPHP_Select_Class", "tabindex" => 1,
+    		"placeholder" => "", "title" => "",
+    		"readonly" => false, "required" => true, 
+    		"value" => ""), $arrValues = array())
+    {
+    	//
+    }
+    
 //FIX ME: Add these
     //input shortcuts
     public function hidden() {}
