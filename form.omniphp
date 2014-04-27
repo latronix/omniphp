@@ -1,6 +1,0 @@
-file: index.php
-: Phone1
-	type: phone
-	format: us_phone_1
-	value: ...
-	
