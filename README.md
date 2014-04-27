@@ -3,11 +3,10 @@
 
 ## TEST (WIP (Work In Progress))
 OmniPHP is a set of libraries and components for:
-- HTML5 forms with all pertinent validations
-- CRUD
-- Database Abstraction Layers and ORM (Object Relational Mapping)
-- jQuery, jQuery UI, and other AJAX libraries/plugins
-- Session handling
+- HTML5 forms and full CRUDs (with all functionality and validations)
+- DAL (Database Abstraction Layer) and ORM (Object Relational Mapping)
+- AngularJS (primarily), jQuery, jQuery UI, and other AJAX libraries/plugins
+- Session Handling
 - Report Building
 - Security
 
@@ -27,4 +26,5 @@ exhort people who come here by accident now to please wait for a while and keep 
 I will do my best to release a useful solution as soon as possible.
 
 Current Development (NOT-FOR-RELEASE) Version:
-0.4.0
+0.6.0
+

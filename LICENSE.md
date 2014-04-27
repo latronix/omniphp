@@ -1,7 +1,8 @@
 ==============================================================================
 Author: Carmelo Vargas
 Project: OmniPHP Libraries and Framework
-(C) Copyright 2010 - 2012 to OmniPHP.
+License: LGPL 3.0
+(C) Copyright 2010 - 2014 to OmniPHP.
 ==============================================================================
 
 OmniPHP is free software: you can redistribute it and/or modify
